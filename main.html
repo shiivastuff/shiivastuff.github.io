@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIIVA</title>
+    <link type="Image/x-icon" href="favicon.ico" rel="icon">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            flex-direction: column;
+            user-select: none; /* Disable text selection */
+        }
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            margin-top: 35%;
+        }
+        h1 {
+            font-size: 2em;
+            margin: 0.5em 0;
+        }
+        .main-text {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 0.2em 0;
+            line-height: 1.2;
+        }
+        .sub-text {
+            font-size: 1.5em;
+            margin: 1em 0;
+        }
+        .button-container {
+            margin-top: 2em;
+        }
+        .join-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: black;
+            background-color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, opacity 0.3s, background 0.3s;
+        }
+        .join-button:hover {
+            transform: scale(1.1); /* Увеличение на 10% при наведении */
+        }
+        .contact-button {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 0.8em;
+            color: black;
+            background-color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, opacity 0.3s;
+            animation: fadeIn 1s forwards;
+        }
+        .contact-button:hover {
+            transform: translateY(-2px);
+        }
+        .contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: auto;
+            margin-bottom: 2em;
+        }
+        .contact p {
+            font-size: 1.2em;
+            margin: 0.5em 0;
+        }
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+        }
+        .contact-icons a {
+            color: white;
+            font-size: 2em;
+            transition: transform 0.3s;
+        }
+        .contact-icons a:hover {
+            transform: scale(1.1);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* Snowflake styling */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            z-index: 1000;
+            pointer-events: none;
+            user-select: none;
+            animation-name: fall, fadeInOpacity;
+            animation-timing-function: linear, ease-in;
+            animation-iteration-count: infinite, 1;
+            animation-delay: calc(-2s * var(--delay)), 0s;
+            animation-duration: var(--fall-duration, 5s), 2s; /* Reduced duration for faster appearance */
+            opacity: 0.75;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        @keyframes fadeInOpacity {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.75;
+            }
+        }
+        /* Floating words styling */
+        .floating-word {
+            position: fixed;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes floatWordFromBottom {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(var(--end-height, -50vh));
+                opacity: 0;
+            }
+        }
+        @keyframes floatWordFromTop {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(var(--end-height, -50vh));
+                opacity: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqSgDX33NeKm5kj4os7M19clw3XtF0H8vbTE1foX10H6nGf5EAur" crossorigin="anonymous">
+    <script>
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>SHIIVA</h1>
+        <p class="main-text">Project Files. Editing Packs.</p>
+        <p class="main-text">Get better.</p>
+        <p class="sub-text">Free tutorials & Free stuff for the entire AMV industry and more.</p>
+        <div class="button-container">
+            <a href="https://t.me/shiivastuff" target="_blank" class="join-button">Join</a>
+        </div>
+    </div>
+    <div class="contact">
+        <a href="https://t.me/shiivahive" target="_blank" class="contact-button">Contact Me</a>
+    </div>
+
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+    <!-- Floating words -->
+    <div id="floating-words"></div>
+
+    <script>
+        const words = ["Finessem", "Killbok", "HectorWir", "Donya", "LINGO", "K7ira", "Kvan2me", "Zneptun", "Cyan", "DIVINE", "Flacko", "Valak", "Fury", "Cartyx", "N1krus", "Kline", "Razor", "Sickest", "Sonzai", "Izxa"];
+
+        // Function to create snowflakes
+        function createSnowflakes() {
+            const snowflakeContainer = document.getElementById('snowflakes');
+            for (let i = 0; i < 100; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+                snowflake.style.animationDuration = `${Math.random() * 3 + 3}s`; // between 2 and 5 seconds
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; // between 10 and 20 pixels
+                snowflake.style.setProperty('--delay', Math.random().toString());
+                snowflake.style.setProperty('--fall-duration', `${Math.random() * 3 + 2}s`); // between 2 and 5 seconds
+                snowflake.innerHTML = '❄'; // snowflake symbol
+                snowflakeContainer.appendChild(snowflake);
+            }
+        }
+
+        // Function to move snowflakes away from cursor
+        function moveSnowflakes(event) {
+            const snowflakes = document.querySelectorAll('.snowflake');
+            snowflakes.forEach(snowflake => {
+                const rect = snowflake.getBoundingClientRect();
+                const dx = rect.left + rect.width / 2 - event.clientX;
+                const dy = rect.top + rect.height / 2 - event.clientY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const maxDistance = 100;
+                if (distance < maxDistance) {
+                    const angle = Math.atan2(dy, dx);
+                    const offsetX = Math.cos(angle) * (maxDistance - distance);
+                    const offsetY = Math.sin(angle) * (maxDistance - distance);
+                    snowflake.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                } else {
+                    snowflake.style.transform = 'translate(0, 0)';
+                }
+            });
+        }
+
+        // Function to create floating words
+        function createFloatingWords() {
+            const floatingWordsContainer = document.getElementById('floating-words');
+            setInterval(() => {
+                const word = document.createElement('div');
+                word.classList.add('floating-word');
+                word.innerText = words[Math.floor(Math.random() * words.length)];
+                word.style.left = `${Math.random() * window.innerWidth}px`;
+                word.style.animationDuration = `${Math.random() * 3}s`; // between 2 and 5 seconds
+                if (Math.random() > 0.6) {
+                    word.style.top = '-50px';
+                    word.style.animationName = 'floatWordFromTop';
+                } else {
+                    word.style.bottom = '-50px';
+                    word.style.animationName = 'floatWordFromBottom';
+                }
+                word.style.setProperty('--end-height', `${Math.random() * 50 + 50}vh`); // between 50vh and 100vh
+                floatingWordsContainer.appendChild(word);
+                setTimeout(() => {
+                    floatingWordsContainer.removeChild(word);
+                }, 3000); // Remove the word after 5 seconds
+            }, 300); // Create new words every 0.5 seconds
+        }
+
+        document.addEventListener('mousemove', moveSnowflakes);
+        document.addEventListener('DOMContentLoaded', () => {
+            createSnowflakes();
+            createFloatingWords();
+        });
+    </script>
+</body>
+</html>
