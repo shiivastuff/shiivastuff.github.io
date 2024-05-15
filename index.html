@@ -17,7 +17,7 @@
             color: white;
             overflow: hidden;
             flex-direction: column;
-            user-select: none; /* Disable text selection */
+            user-select: none;
         }
         .container {
             text-align: center;
@@ -56,7 +56,7 @@
             transition: transform 0.3s, opacity 0.3s, background 0.3s;
         }
         .join-button:hover {
-            transform: scale(1.1); /* Увеличение на 10% при наведении */
+            transform: scale(1.1); 
         }
         .contact-button {
             display: inline-block;
@@ -111,7 +111,7 @@
                 opacity: 1;
             }
         }
-        /* Snowflake styling */
+
         .snowflake {
             position: fixed;
             top: -10px;
@@ -124,7 +124,7 @@
             animation-timing-function: linear, ease-in;
             animation-iteration-count: infinite, 1;
             animation-delay: calc(-2s * var(--delay)), 0s;
-            animation-duration: var(--fall-duration, 5s), 2s; /* Reduced duration for faster appearance */
+            animation-duration: var(--fall-duration, 5s), 2s; 
             opacity: 0.75;
         }
         @keyframes fall {
@@ -140,7 +140,6 @@
                 opacity: 0.75;
             }
         }
-        /* Floating words styling */
         .floating-word {
             position: fixed;
             color: white;
@@ -177,7 +176,6 @@
             }
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .container {
                 margin-top: 45%;
@@ -200,16 +198,16 @@
                 padding: 6px 15px;
                 font-size: 0.7em;
             }
-            /* Black and white snowflakes on mobile */
+            
             .snowflake {
                 color: rgb(255, 255, 255);
-                opacity: 1;
+                opacity: 0.75;
             }
 
             .floating-word {
                 font-size: 1em;
-                left: calc(5vw + 1px); /* Ensures words don't start too close to the edge */
-                right: calc(5vw + 1px); /* Ensures words don't go off the screen */
+                left: calc(5vw + 1px); 
+                right: calc(5vw + 1px); 
             }
         }
     </style>
@@ -234,31 +232,27 @@
         <a href="https://t.me/shiivahive" target="_blank" class="contact-button">Contact Me</a>
     </div>
 
-    <!-- Snowflakes -->
     <div id="snowflakes"></div>
-    <!-- Floating words -->
     <div id="floating-words"></div>
 
     <script>
         const words = ["Finessem", "Killbok", "HectorWir", "Donya", "LINGO", "K7ira", "Kvan2me", "Zneptun", "Cyan", "DIVINE", "Flacko", "Valak", "Fury", "Cartyx", "N1krus", "Kline", "Razor", "Sickest", "Sonzai", "Izxa"];
 
-        // Function to create snowflakes
         function createSnowflakes() {
             const snowflakeContainer = document.getElementById('snowflakes');
             for (let i = 0; i < 100; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.classList.add('snowflake');
                 snowflake.style.left = `${Math.random() * window.innerWidth}px`;
-                snowflake.style.animationDuration = `${Math.random() * 3 + 3}s`; // between 2 and 5 seconds
-                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; // between 10 and 20 pixels
+                snowflake.style.animationDuration = `${Math.random() * 3 + 3}s`; 
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; 
                 snowflake.style.setProperty('--delay', Math.random().toString());
-                snowflake.style.setProperty('--fall-duration', `${Math.random() * 3 + 2}s`); // between 2 and 5 seconds
-                snowflake.innerHTML = '✶'; // snowflake symbol
+                snowflake.style.setProperty('--fall-duration', `${Math.random() * 3 + 2}s`); 
+                snowflake.innerHTML = '✶'; 
                 snowflakeContainer.appendChild(snowflake);
             }
         }
 
-        // Function to move snowflakes away from cursor
         function moveSnowflakes(event) {
             const snowflakes = document.querySelectorAll('.snowflake');
             snowflakes.forEach(snowflake => {
@@ -278,15 +272,14 @@
             });
         }
 
-        // Function to create floating words
         function createFloatingWords() {
             const floatingWordsContainer = document.getElementById('floating-words');
             setInterval(() => {
                 const word = document.createElement('div');
                 word.classList.add('floating-word');
                 word.innerText = words[Math.floor(Math.random() * words.length)];
-                word.style.left = `${Math.random() * window.innerWidth * 0.9}px`; // Restrict within 90% width
-                word.style.animationDuration = `${Math.random() * 3 + 2}s`; // between 2 and 5 seconds
+                word.style.left = `${Math.random() * window.innerWidth * 0.9}px`; 
+                word.style.animationDuration = `${Math.random() * 3 + 2}s`; 
                 if (Math.random() > 0.6) {
                     word.style.top = '-50px';
                     word.style.animationName = 'floatWordFromTop';
@@ -294,12 +287,12 @@
                     word.style.bottom = '-50px';
                     word.style.animationName = 'floatWordFromBottom';
                 }
-                word.style.setProperty('--end-height', `${Math.random() * 50 + 50}vh`); // between 50vh and 100vh
+                word.style.setProperty('--end-height', `${Math.random() * 50 + 50}vh`); 
                 floatingWordsContainer.appendChild(word);
                 setTimeout(() => {
                     floatingWordsContainer.removeChild(word);
-                }, 5000); // Remove the word after 5 seconds
-            }, 500); // Create new words every 0.5 seconds
+                }, 5000); 
+            }, 500); 
         }
 
         document.addEventListener('mousemove', moveSnowflakes);
