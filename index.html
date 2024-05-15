@@ -180,7 +180,7 @@
         /* Responsive Styles */
         @media (max-width: 768px) {
             .container {
-                margin-top: 45%;
+                margin-top: 60%;
                 padding: 0 10px;
             }
             h1 {
@@ -208,6 +208,8 @@
 
             .floating-word {
                 font-size: 1em;
+                left: calc(5vw + 1px); /* Ensures words don't start too close to the edge */
+                right: calc(5vw + 1px); /* Ensures words don't go off the screen */
             }
         }
     </style>
@@ -251,7 +253,7 @@
                 snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; // between 10 and 20 pixels
                 snowflake.style.setProperty('--delay', Math.random().toString());
                 snowflake.style.setProperty('--fall-duration', `${Math.random() * 3 + 2}s`); // between 2 and 5 seconds
-                snowflake.innerHTML = '✶'; // snowflake symbol
+                snowflake.innerHTML = '❄'; // snowflake symbol
                 snowflakeContainer.appendChild(snowflake);
             }
         }
@@ -283,7 +285,7 @@
                 const word = document.createElement('div');
                 word.classList.add('floating-word');
                 word.innerText = words[Math.floor(Math.random() * words.length)];
-                word.style.left = `${Math.random() * window.innerWidth}px`;
+                word.style.left = `${Math.random() * window.innerWidth * 0.9}px`; // Restrict within 90% width
                 word.style.animationDuration = `${Math.random() * 3 + 2}s`; // between 2 and 5 seconds
                 if (Math.random() > 0.6) {
                     word.style.top = '-50px';
