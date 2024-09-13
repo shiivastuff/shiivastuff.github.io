@@ -153,7 +153,9 @@
 
         @media (max-width: 480px) {
             .ascii-art {
-                font-size: clamp(10px, 1vw, 20px); 
+                font-size: clamp(8px, 3vw, 16px); /* Гибкое масштабирование */
+                overflow-wrap: break-word; /* Предотвращает выход текста за пределы */
+                white-space: pre; /* Обрабатывает пробелы для автоматического переноса */
             }
             .text-white {
                 color: white;
@@ -164,42 +166,51 @@
             }
         }
 
-        @media (max-width: 580px) {
-            .ascii-art {
-                font-size: clamp(10px, 1vw, 20px); 
-            }
-            .text-white {
-                color: white;
-                font-size: 15px;
-            }
-            .content {
-                font-size: 15px; 
-            }
+    @media (max-width: 580px) {
+        .ascii-art {
+            font-size: clamp(8px, 2vw, 16px);
+            overflow-wrap: break-word;
+            white-space: pre;
         }
-        @media (max-width: 350px) {
-            .ascii-art {
-                font-size: clamp(10px, 0,5vw, 20px); 
-            }
-            .text-white {
-                color: white;
-                font-size: 15px;
-            }
-            .content {
-                font-size: 15px; 
-            }
+        .text-white {
+            color: white;
+            font-size: 15px;
         }
-        @media (max-width: 340px) {
-            .ascii-art {
-                font-size: clamp(6px, 2vw, 10px); 
-            }
-            .text-white {
-                color: white;
-                font-size: 10px;
-            }
-            .content {
-                font-size: 15px; 
-            }
+        .content {
+            font-size: 15px; 
         }
+    }
+
+    @media (max-width: 350px) {
+        .ascii-art {
+            font-size: clamp(6px, 1vw, 12px); /* Меньший размер для небольших экранов */
+            overflow-wrap: break-word;
+            white-space: pre;
+        }
+        .text-white {
+            color: white;
+            font-size: 15px;
+        }
+        .content {
+            font-size: 15px; 
+        }
+    }
+
+    @media (max-width: 340px) {
+        .ascii-art {
+            font-size: clamp(5px, 2vw, 10px); /* Минимальный размер для самых маленьких устройств */
+            overflow-wrap: break-word;
+            white-space: pre;
+        }
+        .text-white {
+            color: white;
+            font-size: 10px;
+        }
+        .content {
+            font-size: 15px; 
+        }
+    }
+
     </style>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
