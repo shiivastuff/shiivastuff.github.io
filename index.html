@@ -39,9 +39,10 @@
             color: white;
         }
         pre {
-            white-space: pre;
-            word-wrap: break-word;
-            margin: 0; 
+            white-space: pre; /* Обертывание текста */
+            word-wrap: break-word; /* Перенос длинных слов */
+            margin: 0;
+            max-width: 100%; /* Ограничение ширины до 100% */
         }
         @media (max-width: 600px) {
             .large-text {
